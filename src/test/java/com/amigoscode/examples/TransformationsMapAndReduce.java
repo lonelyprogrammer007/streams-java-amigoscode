@@ -4,6 +4,7 @@ import com.amigoscode.beans.Car;
 import com.amigoscode.beans.Person;
 import com.amigoscode.beans.PersonDTO;
 import com.amigoscode.mockdata.MockData;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -17,6 +18,11 @@ public class TransformationsMapAndReduce {
     @Test
     void yourFirstTransformationWithMap() throws IOException {
         List<Person> people = MockData.getPeople();
+        List<PersonDTO> peopleDTO = people.stream()
+                .filter(person -> person.getAge() > 20)
+                .map(PersonDTO::map)
+                .toList();
+        peopleDTO.forEach(System.out::println);
     }
 
     @Test

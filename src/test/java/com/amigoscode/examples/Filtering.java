@@ -15,8 +15,16 @@ import java.util.stream.Stream;
 public class Filtering {
 
     @Test
+    /**
+     * Filtrando carros
+     */
     public void filter() throws Exception {
         List<Car> cars = MockData.getCars();
+        List<Car> carsLessThan20k = cars.stream()
+                .filter(car -> car.getPrice() < 20_000)
+                .filter(car -> car.getColor().equals("Yellow"))
+                .toList();
+        carsLessThan20k.forEach(System.out::println);
     }
 
     @Test
